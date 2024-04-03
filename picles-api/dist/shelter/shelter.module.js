@@ -6,19 +6,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AppModule = void 0;
+exports.ShelterModule = void 0;
 const common_1 = require("@nestjs/common");
-const app_controller_1 = require("./app.controller");
-const app_service_1 = require("./app.service");
-const shelter_module_1 = require("./shelter/shelter.module");
-let AppModule = class AppModule {
+const shelter_controller_1 = require("./shelter.controller");
+const shelter_tokens_1 = require("./shelter.tokens");
+const get_shelter_details_usecase_1 = require("./usecases/get.shelter.details.usecase");
+let ShelterModule = class ShelterModule {
 };
-exports.AppModule = AppModule;
-exports.AppModule = AppModule = __decorate([
+exports.ShelterModule = ShelterModule;
+exports.ShelterModule = ShelterModule = __decorate([
     (0, common_1.Module)({
-        imports: [shelter_module_1.ShelterModule],
-        controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService],
+        controllers: [shelter_controller_1.ShelterController],
+        providers: [
+            {
+                provide: shelter_tokens_1.default.getShelterDetailsUseCase,
+                useClass: get_shelter_details_usecase_1.default
+            }
+        ]
     })
-], AppModule);
-//# sourceMappingURL=app.module.js.map
+], ShelterModule);
+//# sourceMappingURL=shelter.module.js.map
